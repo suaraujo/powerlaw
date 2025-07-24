@@ -7,11 +7,12 @@ import powerlaw
 from numpy.testing import assert_allclose
 from numpy import genfromtxt
 
+from .utils import load_reference_data
 
 references = {
         'words': {
             'discrete': True,
-            'data': genfromtxt('reference_data/words.txt'),
+            'data': load_reference_data('words.txt'),
             'alpha': 1.95,
             'xmin': 7,
             'lognormal': (0.395, 0.69),
@@ -21,7 +22,7 @@ references = {
             },
         'terrorism': {
             'discrete': True,
-            'data': genfromtxt('reference_data/terrorism.txt'),
+            'data':  load_reference_data('terrorism.txt'),
             'alpha': 2.4,
             'xmin': 12,
             'lognormal': (-0.278, 0.78),
@@ -31,7 +32,7 @@ references = {
             },
         'blackouts': {
             'discrete': False,
-            'data': genfromtxt('reference_data/blackouts.txt')/10.0**3,
+            'data': load_reference_data('blackouts.txt', scale=1e3),
             'alpha': 2.3,
             'xmin': 230,
             'lognormal': (-0.412, 0.68),
@@ -41,7 +42,7 @@ references = {
             },
         'cities': {
             'discrete': False,
-            'data': genfromtxt('reference_data/cities.txt')/10**3,
+            'data': load_reference_data('cities.txt', scale=1e3),
             'alpha': 2.37,
             'xmin': 52.46,
             'lognormal': (-0.090, 0.93),
@@ -51,7 +52,7 @@ references = {
             },
         'fires': {
             'discrete': False,
-            'data': genfromtxt('reference_data/fires.txt'),
+            'data': load_reference_data('fires.txt'),
             'alpha': 2.2,
             'xmin': 6324,
             'lognormal': (-1.78, 0.08),
@@ -61,7 +62,7 @@ references = {
             },
         'flares': {
             'discrete': False,
-            'data': genfromtxt('reference_data/flares.txt'),
+            'data': load_reference_data('flares.txt'),
             'alpha': 1.79,
             'xmin': 323,
             'lognormal': (-0.803, 0.42),
@@ -71,7 +72,7 @@ references = {
             },
         'quakes': {
             'discrete': False,
-            'data': (10**genfromtxt('reference_data/quakes.txt'))/10**3,
+            'data': load_reference_data('quakes.txt', log_transform=True, scale=1e3),
             'alpha': 1.95,   # Clauset/plfit value is 1.64
             'xmin': 10,      # Clauset/plfit value is .794
             'lognormal': (-0.796, 0.43),     # Clauset value is (-7.14, 0.0)
@@ -81,7 +82,7 @@ references = {
             },
         'surnames': {
             'discrete': False,
-            'data': genfromtxt('reference_data/surnames.txt')/10**3,
+            'data': load_reference_data('surnames.txt', scale=1e3)
             'alpha': 2.2,       # Clauset/plfit value is 2.5,
             'xmin': 14.92,      # Clauset/plfit value is 111.92
             'lognormal': (0.148, 0.88),     # Clauset value is (-0.836, 0.4)
