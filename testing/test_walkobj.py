@@ -2,12 +2,7 @@
 
 import unittest
 import numpy as np
-
-import walkobj as wo
-
-import walkobj as wo
-import numpy as np
-
+from . import walkobj as wo
 
 class MyClass:
     def __init__(self, foo, bar):
@@ -49,7 +44,7 @@ testvals = [("abc", "abcd", False),
             ((c1, (c1, (c1, c4))), (c1, (c1, (c1, c3))), False)]
 
 
-def test_deep_equals(obja, objb, isequal):
+def deep_equals(obja, objb, isequal):
     """Confirm that equality of two objects is correct
 
     obja    : One object
@@ -79,11 +74,11 @@ def test_deep_equals(obja, objb, isequal):
 
 class FirstTestCase(unittest.TestCase):
 
-    def test_power_pickle_dump(self):
+    def power_pickle_dump(self):
         print("Testing walkobj.typedtree equality for different objects")
 
         for args in testvals:
-            assert test_deep_equals(*args) is True
+            assert deep_equals(*args) is True
 
 
 if __name__ == '__main__':

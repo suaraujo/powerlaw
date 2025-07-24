@@ -82,7 +82,7 @@ references = {
             },
         'surnames': {
             'discrete': False,
-            'data': load_reference_data('surnames.txt', scale=1e3)
+            'data': load_reference_data('surnames.txt', scale=1e3),
             'alpha': 2.2,       # Clauset/plfit value is 2.5,
             'xmin': 14.92,      # Clauset/plfit value is 111.92
             'lognormal': (0.148, 0.88),     # Clauset value is (-0.836, 0.4)

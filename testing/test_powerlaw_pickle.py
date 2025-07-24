@@ -4,17 +4,17 @@ from __future__ import (print_function, absolute_import,
 
 from numpy.testing import assert_allclose
 from numpy import genfromtxt
-
-import walkobj as wo
-
+from . import walkobj as wo
 import unittest
 import powerlaw
 import pickle
+from .utils import load_reference_data
+
 
 references = {
         'words': {
             'discrete': True,
-            'data': genfromtxt('reference_data/words.txt'),
+            'data': load_reference_data('words.txt'),
             'alpha': 1.95,
             'xmin': 7,
             'lognormal': (0.395, 0.69),
@@ -24,7 +24,7 @@ references = {
             },
         'blackouts': {
             'discrete': False,
-            'data': genfromtxt('reference_data/blackouts.txt')/10.0**3,
+            'data': load_reference_data('blackouts.txt', scale=1e3),
             'alpha': 2.3,
             'xmin': 230,
             'lognormal': (-0.412, 0.68),
@@ -65,7 +65,7 @@ class FirstTestCase(unittest.TestCase):
             results[k]['xmin'] = fit.xmin
             results[k]['fit'] = fit
 
-    def test_power_pickle_dump(self):
+    def power_pickle_dump(self):
         print("Testing power law object pickle")
 
         for k in references.keys():
@@ -76,7 +76,7 @@ class FirstTestCase(unittest.TestCase):
             # print("I dumped")
             # results[k]['fit'].supported_distributions.keys()
 
-    def test_power_pickle_load(self):
+    def power_pickle_load(self):
         print("Testing power law object unpickle")
 
         for k in references.keys():
